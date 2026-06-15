@@ -89,7 +89,7 @@ SELECT
   ROUND(total_cost) AS total_cost
   FROM bookings
   INNER JOIN users ON users.user_id = bookings.user_id
-  INNER JOIN matches ON bookings.match_id = matches. match_id;
+  INNER JOIN matches ON bookings.match_id = matches.match_id;
 
 -- Query 5: Display a comprehensive list of all users and their booking IDs, ensuring that fans who have never bought a ticket are still listed.
 SELECT
@@ -117,4 +117,4 @@ fixture,
 ROUND(base_ticket_price) AS base_ticket_price
  FROM  matches 
 ORDER BY base_ticket_price DESC
- LIMIT 2 OFFSET 1 
+ LIMIT 2 OFFSET 1;

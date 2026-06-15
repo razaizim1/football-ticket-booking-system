@@ -1,3 +1,7 @@
+DROP TABLE IF EXISTS Bookings;
+DROP TABLE IF EXISTS Matches;
+DROP TABLE IF EXISTS Users;
+
 -- create user table
 CREATE TABLE IF NOT EXISTS users (
     user_id INT PRIMARY KEY,

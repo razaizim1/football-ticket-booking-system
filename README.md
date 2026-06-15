@@ -1,34 +1,107 @@
--- create user table
-CREATE TABLE IF NOT EXISTS users (
-    user_id INT PRIMARY KEY,
-    full_name VARCHAR(100) NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    role VARCHAR(50) NOT NULL
-  CHECK (role IN ('Ticket Manager', 'Football Fan')),
-    phone_number VARCHAR(20)
-);
+# Football Ticket Booking System Database
 
--- create matches table
-CREATE TABLE IF NOT EXISTS Matches (
-    match_id INT PRIMARY KEY,
-    fixture VARCHAR(255) NOT NULL,
-    tournament_category VARCHAR(100) NOT NULL,
-    base_ticket_price DECIMAL(10,2) NOT NULL CHECK (base_ticket_price >= 0),
-    match_status VARCHAR(20) NOT NULL
-        CHECK (match_status IN ('Available', 'Selling Fast', 'Sold Out', 'Postponed'))
-);
+## Overview
 
+This project is a database design and SQL assignment for a Football Ticket Booking System. The system manages football fans, football matches, and ticket bookings.
 
--- create bookings table
-CREATE TABLE IF NOT EXISTS bookings(
-  booking_id INT PRIMARY KEY,
-  user_id INT,
-  match_id INT,
-  seat_number VARCHAR(20),
-  payment_status VARCHAR(20) CHECK (payment_status IN ('Pending', 'Confirmed', 'Cancelled', 'Refunded')),
-  total_cost DECIMAL(10,2)
-        CHECK (total_cost >= 0),
+The project demonstrates:
 
-  FOREIGN KEY (user_id) REFERENCES Users(user_id),
-    FOREIGN KEY (match_id) REFERENCES Matches(match_id)
-);
+* Database table design
+* Primary Key and Foreign Key relationships
+* Entity Relationship Diagram (ERD)
+* SQL queries using JOINs, Subqueries, Aggregations, NULL handling, Pattern Matching, and Pagination
+
+---
+
+## Database Tables
+
+### Users
+
+Stores information about registered users and ticket managers.
+
+Fields:
+
+* user_id (Primary Key)
+* full_name
+* email
+* role
+* phone_number
+
+### Matches
+
+Stores football match information.
+
+Fields:
+
+* match_id (Primary Key)
+* fixture
+* tournament_category
+* base_ticket_price
+* match_status
+
+### Bookings
+
+Stores ticket booking records.
+
+Fields:
+
+* booking_id (Primary Key)
+* user_id (Foreign Key)
+* match_id (Foreign Key)
+* seat_number
+* payment_status
+* total_cost
+
+---
+
+## Relationships
+
+* One User → Many Bookings
+* One Match → Many Bookings
+* Each Booking belongs to one User and one Match
+
+---
+
+## SQL Concepts Used
+
+* SELECT
+* WHERE
+* LIKE / ILIKE
+* COALESCE
+* INNER JOIN
+* LEFT JOIN
+* Aggregate Functions (AVG)
+* Subqueries
+* ORDER BY
+* LIMIT
+* OFFSET
+* CHECK Constraints
+* PRIMARY KEY
+* FOREIGN KEY
+
+---
+
+## Assignment Queries
+
+1. Retrieve available Champions League matches.
+2. Search users by name using ILIKE.
+3. Handle NULL payment status using COALESCE.
+4. Display booking details with user and match information.
+5. Display all users including users without bookings using LEFT JOIN.
+6. Find bookings with total cost greater than the average booking cost.
+7. Retrieve the top 2 most expensive matches while skipping the highest priced match.
+
+---
+
+## Files
+
+* QUERY.sql — Database schema, sample data, and SQL queries.
+* ERD.png — Entity Relationship Diagram.
+
+---
+
+## Author
+
+Name: Razai Zim
+
+Course Assignment: Football Ticket Booking System Database Design & SQL Queries
